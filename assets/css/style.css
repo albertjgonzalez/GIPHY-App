@@ -1,6 +1,6 @@
 html, body {
     font-family: 'IBM Plex Sans', sans-serif;
-
+font-size: 18px; 
     background: linear-gradient(to right, #5d1e91 0%,#3a1756 10%,#000102 30%,#000102 71%,#3a1756 89%,#5d1e91 100%);
     color: white;
 }
@@ -84,6 +84,13 @@ float: right;
     width: 80%;
     overflow: auto;
 }
+#rating{
+    text-align: center;
+    margin: -1% auto -20% auto;
+    color:white;
+    font-size: 30px;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
 .giphy{
      border: 0px;
     margin: auto 1%;
@@ -91,18 +98,18 @@ float: right;
 
 button , input{
     font-family: 'IBM Plex Sans', sans-serif;
-
+    border: solid 3px;
     border-color: rgb(194, 129, 194); 
     color: rgb(194, 129, 194);
     background-color: rgba(211, 211, 211, 0);
-border-radius: 5%;
+border-radius: 3px;
 transition: transform .3s;
 
 }
 
 button:hover , input:hover{
-    background-color: rgb(197, 182, 197);
-    color: black;
+    background-color: rgb(194, 129, 194); 
+    color: white;
 }
 
 

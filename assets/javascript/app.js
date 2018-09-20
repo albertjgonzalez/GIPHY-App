@@ -30,7 +30,7 @@ var searchGiphy = function (giphy){
             img.addClass('giph')
             img.attr('src',response.data[i].images.fixed_height_still.url)
             img.attr('data-animate',response.data[i].images.fixed_height.url)
-            
+            img.attr('data-rating',response.data[i].rating)
         $('#displayGiphy').append(img)
         }
     })
@@ -78,5 +78,15 @@ $('#saved').click(function(){
         $('#displayGiphy').append(img)
     }
 })
+
+$(document).on('mouseenter', '.giph', function(){
+    var rating = "Giphy Rating: "+$(this).attr('data-rating')
+    $('#rating').text(rating)
+})
+$(document).on('mouseleave', '.giph', function(){
+    var rating = "Giphy Rating: "
+    $('#rating').text(rating)
+})
+
 
 createButtons()
