@@ -1,6 +1,10 @@
-var buttons = ['rick and morty','supersmash bros','coding','fortnite']
+var buttons = ['alienz','glitch','chillwave','cyber','vaporwave']
 
-var searchIndex = 0;
+var altImgs = []
+
+var saved = []
+
+var currentGiph
 
 var createButtons = function(){
     $('#buttons').empty()
@@ -20,11 +24,25 @@ var searchGiphy = function (giphy){
         method: 'GET'
     }).then(function(response){
         $('#displayGiphy').empty()
-        var img = $( '<img>' )
-        img.attr('src',response.data[searchIndex].images.fixed_height.url)
+        for(var i = 0;i<10;i++){
+            console.log(queryURL)
+            var img = $( '<img>' )
+            img.addClass('giph')
+            img.attr('src',response.data[i].images.fixed_height_still.url)
+            img.attr('data-animate',response.data[i].images.fixed_height.url)
+            
         $('#displayGiphy').append(img)
+        }
     })
     createButtons()
+}
+
+var playGiphy = function(){
+    currentGiph = $(this)
+    var newSrc = $(this).attr('src')
+    var play = $(this).attr('data-animate')
+    $(this).attr('src',play)
+    $(this).attr('data-animate',newSrc)
 }
 
 $('#add-giphy').on('click',function(event){
@@ -37,10 +55,28 @@ $('#add-giphy').on('click',function(event){
     searchGiphy(giphy)
 })
 
+$('#save-giph').click(function(){
+    if(currentGiph){
+        $('#savedThumb').css('visibility','visible')
+        setTimeout(function(){$('#savedThumb').css('visibility','hidden')},2000)
+    }
+    saved.push(currentGiph)
+    
+})
+
 $(document).on("click", ".giphy",function(){
     var giphy = $(this).attr('data-name')
     searchGiphy(giphy)
-    searchIndex++
+})
+
+$(document).on("click",".giph",playGiphy)
+
+$('#saved').click(function(){
+    $('#displayGiphy').empty()
+    for(var i = 0; i<saved.length;i++){
+        var img = saved[i]
+        $('#displayGiphy').append(img)
+    }
 })
 
 createButtons()
